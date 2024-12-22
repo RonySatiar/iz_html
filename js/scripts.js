@@ -26,10 +26,10 @@ var faqIso = $(".all-faqs").isotope({
   layoutMode: "fitRows",
 });
 
-// var filterWrap = $(".filter-wrapper").isotope({
-//     filterItem: ".filter-item",
-//     layoutMode: "fitRows",
-//   });
+var filterWrap = $(".filter-wrapper").isotope({
+    filterItem: ".filter-item",
+    layoutMode: "fitRows",
+  });
 
 $("a.faqselector").on("click", function (e) {
     e.preventDefault();
@@ -222,6 +222,26 @@ var slideTabsSwiper = new Swiper(".slide-tabs", {
       },
   },
 });
+
+
+var inputs = document.querySelectorAll(".file-input");
+  
+  for (var i = 0, len = inputs.length; i < len; i++) {
+    customInput(inputs[i]);
+  }
+  
+  function customInput(el) {
+    const fileInput = el.querySelector('[type="file"]');
+    const label = el.querySelector("[data-js-label]");
+  
+    fileInput.onchange = fileInput.onmouseout = function () {
+        if (!fileInput.value) return;
+  
+        var value = fileInput.value.replace(/^.*[\\\/]/, "");
+        el.className += " -chosen";
+        label.innerText = value;
+    };
+  }
 
 
 // Handle Collapse Divs
