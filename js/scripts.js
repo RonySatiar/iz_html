@@ -224,6 +224,83 @@ var slideTabsSwiper = new Swiper(".slide-tabs", {
 });
 
 
+var aboutSwiper = new Swiper('.about-carousel', {
+  slidesPerView: 1.2,
+  spaceBetween: 20,
+  grabCursor: true,
+  centeredSlides: true,
+  centeredSlidesBounds: true,
+  scrollbar: {
+    el: ".swiper-scrollbar",
+  },
+  breakpoints: {
+
+    768: {
+      slidesPerView: 2.7,
+
+    },
+    1400: {
+      slidesPerView: 3.7,
+
+    },
+  },
+
+});
+
+var timeLineSwiper = new Swiper('.timeline-carosuel', {
+  slidesPerView: 1.3,
+  spaceBetween: 30,
+  grabCursor: true,
+  scrollbar: {
+    el: ".swiper-scrollbar",
+  },
+
+  pagination: {
+    el: ".actions-pagination",
+    type: "fraction",
+  },
+  navigation: {
+    nextEl: '.actions-button-next',
+    prevEl: '.actions-button-prev',
+  },
+  breakpoints: {
+
+    768: {
+      slidesPerView: 2,
+      spaceBetween: 35,
+    },
+    1200: {
+      slidesPerView: 3,
+      spaceBetween: 50,
+    },
+    1400: {
+      slidesPerView: 3,
+      spaceBetween: 65,
+    },
+  },
+
+});
+
+
+const stepFormswiper = new Swiper(".step-form-slider", {
+  slidesPerView: 1,
+  spaceBetween: 30,
+  scrollbar: {
+    el: ".swiper-scrollbar",
+  },
+  pagination: {
+    el: ".actions-pagination",
+    type: "fraction",
+  },
+  navigation: {
+    nextEl: '.actions-button-next',
+    prevEl: '.actions-button-prev',
+  },
+  allowTouchMove: false, // Disable swipe gestures for step control
+});
+
+
+
 var inputs = document.querySelectorAll(".file-input");
   
   for (var i = 0, len = inputs.length; i < len; i++) {
@@ -242,6 +319,37 @@ var inputs = document.querySelectorAll(".file-input");
         label.innerText = value;
     };
   }
+
+
+  // Values card collapse
+  document.addEventListener("DOMContentLoaded", () => {
+    const valuesCard = document.querySelector(".values-card");
+    const toggleButton = document.getElementById("toggle-cards-btn");
+    const fullHeight = valuesCard.scrollHeight; // Full height of the container
+    const collapsedHeight = 700; // Fixed height when collapsed
+    let isExpanded = false;
+  
+    // Set initial height to the fixed collapsed height
+    valuesCard.style.height = `${collapsedHeight}px`;
+    valuesCard.style.transition = "height 0.5s ease";
+    valuesCard.classList.add("overlay-values-card");
+  
+    // Toggle functionality
+    toggleButton.addEventListener("click", () => {
+      if (!isExpanded) {
+        // Expand to full height
+        valuesCard.style.height = `${fullHeight}px`;
+        valuesCard.classList.remove("overlay-values-card");
+        toggleButton.querySelector("span").textContent = "Toon minder";
+      } else {
+        // Collapse to fixed height
+        valuesCard.style.height = `${collapsedHeight}px`;
+        valuesCard.classList.add("overlay-values-card");
+        toggleButton.querySelector("span").textContent = "Lees meer";
+      }
+      isExpanded = !isExpanded; // Toggle state
+    });
+  });
 
 
 // Handle Collapse Divs
